@@ -34,9 +34,16 @@ export const App = () => {
     <Container>
       <Section title="Please leave feedback">
         <FeedbackOptions
-          odderForGood={odderForGood}
-          odderForNeutral={odderForNeutral}
-          odderForBad={odderForBad}
+          options={['good', 'neutral', 'bad']} 
+          onLeaveFeedback={type => {
+            if (type === 'good') {
+              odderForGood();
+            } else if (type === 'neutral') {
+              odderForNeutral();
+            } else if (type === 'bad') {
+              odderForBad();
+            }
+          }}
         />
       </Section>
       <Section title="Statistics">

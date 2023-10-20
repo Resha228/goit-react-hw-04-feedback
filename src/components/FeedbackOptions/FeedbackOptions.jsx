@@ -2,26 +2,21 @@
 import PropTypes from 'prop-types';
 import { ButtonContainer, ButtonFeedBack } from './FeedbackOptions.styled';
 
-function FeedbackOptions({ odderForGood, odderForNeutral, odderForBad }) {
+function FeedbackOptions({ options, onLeaveFeedback }) {
   return (
     <ButtonContainer>
-     <ButtonFeedBack key="Good" name="Good" onClick={odderForGood}>
-  Good
-</ButtonFeedBack>
-<ButtonFeedBack key="Neutral" name="Neutral"  onClick={odderForNeutral}>
-  Neutral
-</ButtonFeedBack>
-<ButtonFeedBack key="Bad" name="Bad"  onClick={odderForBad}>
-  Bad
-</ButtonFeedBack>
+      {options.map((option) => (
+        <ButtonFeedBack key={option} name={option} onClick={() => onLeaveFeedback(option)}>
+          {option}
+        </ButtonFeedBack>
+      ))}
     </ButtonContainer>
   );
 }
 
 FeedbackOptions.propTypes = {
-  odderForGood: PropTypes.func.isRequired,
-  odderForNeutral: PropTypes.func.isRequired,
-  odderForBad: PropTypes.func.isRequired,
+  options: PropTypes.arrayOf(PropTypes.string).isRequired, // Проп "options" - массив строк
+  onLeaveFeedback: PropTypes.func.isRequired,
 };
 
 export { FeedbackOptions };
